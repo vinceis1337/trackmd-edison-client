@@ -7,7 +7,7 @@ var request = require('request'); //http request library
 var url = "server url goes here";
 var awaitUser = false;
 var awaitItem = false;
-var writeMode = process.env.port;
+var writeMode = process.env.writeMode;
 
 var pcsc = require('pcsclite'); //pcsclite handler for communicating with nfc reader
  
