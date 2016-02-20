@@ -43,7 +43,7 @@ pcsc.on('reader', function(reader) {
                     } else {
                         if (writeMode == "true") {
                             var leData = new Buffer([0xFF, 0xD6, 0x00, 0x04, 0x04, 0x68, 0x61, 0x63, 0x6b]);
-                            reader.transmit(leData, 2, protocol, function(err, data) {
+                            reader.transmit(leData, 40, protocol, function(err, data) {
                                 if (err) {
                                     console.log(err);
                                 }
@@ -54,7 +54,7 @@ pcsc.on('reader', function(reader) {
                             });
                         }
                         console.log('Protocol(', reader.name, '):', protocol);
-                        reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x04]), 4, protocol, function(err, data) {
+                        reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x04]), 40, protocol, function(err, data) {
                             if (err) {
                                 console.log(err);
                             } else {
