@@ -42,7 +42,12 @@ pcsc.on('reader', function(reader) {
                     } else {
                         if (writeMode) {
                             reader.transmit(new Buffer("hyperhacks", "UTF-8"), 500, protocol, function(err, data) {
-                                console.log("wrote hyperhacks to memory..?");
+                                if (err) {
+                                    console.log(err);
+                                }
+                                else {
+                                    console.log("wrote hyperhacks to memory..?");
+                                }
                             });
                         }
                         console.log('Protocol(', reader.name, '):', protocol);
