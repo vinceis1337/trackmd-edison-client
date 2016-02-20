@@ -41,7 +41,7 @@ pcsc.on('reader', function(reader) {
                         console.log(err);
                     } else {
                         if (writeMode) {
-                            var leData = new Buffer([0xFF, 0xD6, 0x00, 0x04, 0x04, 0x68, 0x61, 0x63, 0x6b]);
+                            var leData = new Buffer([0xFF, 0xD6, 0x00, 0x00, 0x04, 0x68, 0x61, 0x63, 0x6b]);
                             reader.transmit(leData, 2, protocol, function(err, data) {
                                 if (err) {
                                     console.log(err);
