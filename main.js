@@ -7,7 +7,7 @@ var request = require('request'); //http request library
 var url = "server url goes here";
 var awaitUser = false;
 var awaitItem = false;
-var writeMode = true;
+var writeMode = process.env.port;
 
 var pcsc = require('pcsclite'); //pcsclite handler for communicating with nfc reader
  
@@ -53,7 +53,7 @@ pcsc.on('reader', function(reader) {
                             });
                         }
                         console.log('Protocol(', reader.name, '):', protocol);
-                        reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x04]), 40, protocol, function(err, data) {
+                        reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x04]), 4, protocol, function(err, data) {
                             if (err) {
                                 console.log(err);
                             } else {
