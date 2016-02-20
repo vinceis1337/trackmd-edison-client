@@ -7,6 +7,7 @@ var request = require('request'); //http request library
 var url = "server url goes here";
 var awaitUser = false;
 var awaitItem = false;
+var writeMode = true;
 
 var pcsc = require('pcsclite'); //pcsclite handler for communicating with nfc reader
  
@@ -39,6 +40,11 @@ pcsc.on('reader', function(reader) {
                     if (err) {
                         console.log(err);
                     } else {
+                        if (writeMode) {
+                            reader.transmit(new Buffer("hyperhacks", "UTF_8"), 500, protocol, function(err, data) {
+                                console.log("wrote hyperhacks to memory..?");
+                            });
+                        }
                         console.log('Protocol(', reader.name, '):', protocol);
                         reader.transmit(new Buffer([0x00, 0xB0, 0x00, 0x00, 0x20]), 40, protocol, function(err, data) {
                             if (err) {
