@@ -42,12 +42,12 @@ pcsc.on('reader', function(reader) {
                     } else {
                         if (writeMode) {
                             var leData = new Buffer([0xFF, 0xD6, 0x00, 0x04, 0x04, 0x68, 0x61, 0x63, 0x6b]);
-                            reader.transmit(leData, 500, protocol, function(err, data) {
+                            reader.transmit(leData, 2, protocol, function(err, data) {
                                 if (err) {
                                     console.log(err);
                                 }
                                 else {
-                                    console.log("wrote hyperhacks to memory..?");
+                                    console.log("wrote hack to memory..?");
                                     console.log("Data: " + leData);
                                 }
                             });
