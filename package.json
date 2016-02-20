@@ -10,7 +10,7 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
-      "request": "2.67.0",
-      "pcsclite": "0.4.7"
+    "pcsclite": "^0.4.7",
+    "request": "^2.67.0"
   }
 }
