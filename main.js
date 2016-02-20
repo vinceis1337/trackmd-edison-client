@@ -54,12 +54,12 @@ pcsc.on('reader', function(reader) {
                             });
                         }
                         console.log('Protocol(', reader.name, '):', protocol);
-                        reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x00, 0x03]), 40, protocol, function(err, data) {
+                        reader.transmit(new Buffer([0xFF, 0xCA, 0x00, 0x00, 0x00]), 40, protocol, function(err, data) {
                             if (err) {
                                 console.log(err);
                             } else {
                                 console.log('Serial Number Data received', data);
-                                console.log('Trimming extraneous data', data.slice(0, 9));
+                                console.log('Trimming extraneous data', data.slice(0, data.length - 2));
                             }
                         });
                         reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x04]), 40, protocol, function(err, data) {
