@@ -11,6 +11,7 @@ var awaitItem = false;
 var writeMode = process.env.writeMode;
 console.log("writeMode: " + writeMode);
 
+var mraa = require ('mraa');
 var LCD  = require ('jsupm_i2clcd');
 var myLCD = new LCD.Jhd1313m1(6, 0x3E, 0x62);
 
