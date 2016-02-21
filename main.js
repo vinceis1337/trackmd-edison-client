@@ -113,7 +113,8 @@ function postToServer(jsonObject) {
             }
             console.log(body.message);
             //show response on LED screen 
-            lcdText.set("Display message on LCD Screen: \n" + body.message);
+            console.log("Display message on LCD Screen: \n" + body.message);
+            lcdText.set(body.message);
             console.log("Sent Json Object: " + JSON.stringify(jsonObject))  ;
         }
     );
