@@ -11,6 +11,9 @@ var awaitItem = false;
 var writeMode = process.env.writeMode;
 console.log("writeMode: " + writeMode);
 
+var LCD  = require ('jsupm_i2clcd');
+var myLCD = new LCD.Jhd1313m1(6, 0x3E, 0x62);
+
 var pcsc = require('pcsclite'); //pcsclite handler for communicating with nfc reader
  
 var pcsc = pcsc();
@@ -66,6 +69,11 @@ pcsc.on('reader', function(reader) {
                                 postToServer({"rfid": trimmedSerialNumberResponse});
                                 reader.close();
                                 pcsc.close();
+                                
+                                var lcdMessage = "Herp Derp";
+                                myLCD.setCursor(0,1);
+                                console.log(lcdMessage); 
+                                myLCD.write(lcdMessage);
                             }
                         });
                         //data must be explicitly written in all bytes requested (fifth buffer hex byte) or the read request will fail
