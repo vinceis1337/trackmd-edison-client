@@ -64,7 +64,6 @@ pcsc.on('reader', function(reader) {
                                 var trimmedSerialNumberResponse = data.slice(0, data.length - 2);
                                 console.log('Trimming extraneous data', trimmedSerialNumberResponse);
                                 postToServer({"rfid": trimmedSerialNumberResponse});
-                                console.log("Sending Serial Number: " + trimmedSerialNumberResponse);
                                 reader.close();
                                 pcsc.close();
                             }
@@ -110,6 +109,7 @@ function postToServer(jsonObject) {
             }
             console.log(response);
             //show response on LED screen?
+            console.log("Sent Json Object: " + JSON.stringify(jsonObject));
         }
     );
 }
