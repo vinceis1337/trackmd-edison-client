@@ -4,7 +4,8 @@
 //Type Node.js Here :)
 var request = require('request'); //http request library
 
-var url = "server url goes here";
+var url = "http://62850736.ngrok.io";
+var endpoint = "/rfid";
 var awaitUser = false;
 var awaitItem = false;
 var writeMode = process.env.writeMode;
@@ -60,6 +61,7 @@ pcsc.on('reader', function(reader) {
                             } else {
                                 console.log('Serial Number Data received', data);
                                 console.log('Trimming extraneous data', data.slice(0, data.length - 2));
+                                postToServer(data.slice(0, data.length - 2).toString());
                                 reader.close();
                                 pcsc.close();
                             }
@@ -91,8 +93,9 @@ pcsc.on('error', function(err) {
 });
 
 function postToServer(jsonObject) {
+    var combinedUrl = url + endpoint;
     request.post(
-        url,
+        combinedUrl,
         {
             json: true,
             body: jsonObject,
