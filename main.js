@@ -70,11 +70,6 @@ pcsc.on('reader', function(reader) {
                                 postToServer({"rfid": trimmedSerialNumberResponse});
                                 reader.close();
                                 pcsc.close();
-                                
-                                var lcdMessage = "Herp Derp";
-                                myLCD.setCursor(0,1);
-                                console.log(lcdMessage); 
-                                myLCD.write(lcdMessage);
                             }
                         });
                         //data must be explicitly written in all bytes requested (fifth buffer hex byte) or the read request will fail
@@ -116,7 +111,9 @@ function postToServer(jsonObject) {
                 console.log("Error posting? Is server functioning?");
                 console.log("Error: " + error);
             }
-//            console.log(response);
+            myLCD.setCursor(0,1);
+            console.log(response); 
+            myLCD.write(response);
             //show response on LED screen?
             console.log("Sent Json Object: " + JSON.stringify(jsonObject))  ;
         }
