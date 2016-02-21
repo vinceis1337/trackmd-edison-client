@@ -60,8 +60,11 @@ pcsc.on('reader', function(reader) {
                                 console.log(err);
                             } else {
                                 console.log('Serial Number Data received', data);
-                                console.log('Trimming extraneous data', data.slice(0, data.length - 2));
-                                postToServer({"rfid": data.slice(0, data.length - 2).toString()});
+                                //add hex error handling here
+                                var trimmedSerialNumberResponse = data.slice(0, data.length - 2);
+                                console.log('Trimming extraneous data', trimmedSerialNumberResponse);
+                                postToServer({"rfid": trimmedSerialNumberResponse});
+                                console.log("Sending Serial Number: " + trimmedSerialNumberResponse);
                                 reader.close();
                                 pcsc.close();
                             }
