@@ -61,7 +61,7 @@ pcsc.on('reader', function(reader) {
                             } else {
                                 console.log('Serial Number Data received', data);
                                 //add hex error handling here
-                                var trimmedSerialNumberResponse = data.slice(0, data.length - 2).toString();
+                                var trimmedSerialNumberResponse = data.slice(0, data.length - 2).toString('hex');
                                 console.log('Trimming extraneous data', trimmedSerialNumberResponse);
                                 postToServer({"rfid": trimmedSerialNumberResponse});
                                 reader.close();
@@ -107,7 +107,7 @@ function postToServer(jsonObject) {
                 console.log("Error posting? Is server functioning?");
                 console.log("Error: " + error);
             }
-            console.log(response);
+//            console.log(response);
             //show response on LED screen?
             console.log("Sent Json Object: " + JSON.stringify(jsonObject))  ;
         }
