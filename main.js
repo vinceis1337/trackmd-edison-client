@@ -60,19 +60,21 @@ pcsc.on('reader', function(reader) {
                             } else {
                                 console.log('Serial Number Data received', data);
                                 console.log('Trimming extraneous data', data.slice(0, data.length - 2));
-                            }
-                       buffer hex pair
-                        //data must be explicitly written in all bytes requested (fifth buffer hex byte) or the read request will fail
-                        reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x04]), 40, protocol, function(err, data) {
-                            if (err) {
-                                console.log(err);
-                            } else {
-                                console.log('Read/Write Data received', data);
-                                console.log('Trimming extraneous data', data.slice(0, data.length - 2));
                                 reader.close();
                                 pcsc.close();
                             }
-                        });
+                       buffer hex pair
+                        //data must be explicitly written in all bytes requested (fifth buffer hex byte) or the read request will fail
+//                        reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x04]), 40, protocol, function(err, data) {
+//                            if (err) {
+//                                console.log(err);
+//                            } else {
+//                                console.log('Read/Write Data received', data);
+//                                console.log('Trimming extraneous data', data.slice(0, data.length - 2));
+//                                reader.close();
+//                                pcsc.close();
+//                            }
+//                        });
                     }
                 });
             }
