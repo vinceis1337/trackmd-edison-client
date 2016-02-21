@@ -8,6 +8,8 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "jsupm_i2clcd": "^0.4.1",
+    "mraa": "^0.9.3",
     "pcsclite": "^0.4.7",
     "request": "^2.67.0"
   }
