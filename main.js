@@ -14,6 +14,8 @@ console.log("writeMode: " + writeMode);
 var mraa = require ('mraa');
 var LCD  = require ('jsupm_i2clcd');
 var myLCD = new LCD.Jhd1313m1(6, 0x3E, 0x62);
+var LcdTextHelper = require('./lcd_text_helper');
+var lcdText = LcdTextHelper(myLCD);
 
 var pcsc = require('pcsclite'); //pcsclite handler for communicating with nfc reader
  
@@ -111,10 +113,9 @@ function postToServer(jsonObject) {
                 console.log("Error posting? Is server functioning?");
                 console.log("Error: " + error);
             }
-            myLCD.setCursor(0,1);
-            console.log(body.message); 
-            myLCD.write(body.message);
-            //show response on LED screen?
+            console.log(body.message);
+            //show response on LED screen 
+            lcdText.set(body.message);
             console.log("Sent Json Object: " + JSON.stringify(jsonObject))  ;
         }
     );
