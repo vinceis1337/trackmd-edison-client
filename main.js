@@ -61,7 +61,7 @@ pcsc.on('reader', function(reader) {
                             } else {
                                 console.log('Serial Number Data received', data);
                                 console.log('Trimming extraneous data', data.slice(0, data.length - 2));
-                                postToServer(data.slice(0, data.length - 2).toString());
+                                postToServer({"rfid": data.slice(0, data.length - 2).toString()});
                                 reader.close();
                                 pcsc.close();
                             }
