@@ -112,8 +112,8 @@ function postToServer(jsonObject) {
                 console.log("Error: " + error);
             }
             myLCD.setCursor(0,1);
-            console.log(response); 
-            myLCD.write(response);
+            console.log(body.message); 
+            myLCD.write(body.message);
             //show response on LED screen?
             console.log("Sent Json Object: " + JSON.stringify(jsonObject))  ;
         }
