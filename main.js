@@ -61,7 +61,6 @@ pcsc.on('reader', function(reader) {
                                 console.log('Serial Number Data received', data);
                                 console.log('Trimming extraneous data', data.slice(0, data.length - 2));
                             }
-                            getData();
                         });
                         reader.transmit(new Buffer([0xFF, 0xB0, 0x00, 0x04, 0x05]), 40, protocol, function(err, data) {
                             if (err) {
