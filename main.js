@@ -70,8 +70,6 @@ pcsc.on('reader', function(reader) {
                                 var trimmedSerialNumberResponse = data.slice(0, data.length - 2).toString('hex');
                                 console.log('Trimming extraneous data', trimmedSerialNumberResponse);
                                 postToServer({"rfid": trimmedSerialNumberResponse});
-                                reader.close();
-                                pcsc.close();
                             }
                         });
                         //data must be explicitly written in all bytes requested (fifth buffer hex byte) or the read request will fail
@@ -115,7 +113,8 @@ function postToServer(jsonObject) {
             }
             console.log(body.message);
             //show response on LED screen 
-            lcdText.set("Display message on LCD Screen: \n" + body.message);
+            console.log("Display message on LCD Screen: \n" + body.message);
+            lcdText.set(body.message);
             console.log("Sent Json Object: " + JSON.stringify(jsonObject))  ;
         }
     );
